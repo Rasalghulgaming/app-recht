@@ -3,5 +3,42 @@
 @media(min-width:1350px){.feature-visual{right:5px;width:230px}}@media(max-width:1000px){.shell{width:calc(100% - 48px)}.feature{padding:28px}.feature h2{font-size:34px}.feature-visual{right:-45px;width:190px;top:125px}.feature-ura h2{font-size:30px}.feature-copy{width:72%}.app-card{padding:21px}.category{max-width:90px}.section-note{display:none}.app-card h3{font-size:18px}.card-head{align-items:start}.app-icon{width:55px;height:55px}}
 @media(max-width:700px){.shell{width:calc(100% - 36px)}.site-header{padding-block:20px}.brand{font-size:13px;gap:10px}.brand small{font-size:9px}.brand-mark{font-size:32px}.site-header nav{gap:16px;font-size:11px}.site-header nav a:last-child{display:none}.hero{padding-block:44px 34px}.eyebrow{font-size:9px;letter-spacing:.1em}.hero h1{font-size:clamp(52px,11.8vw,80px);margin-top:22px}.hero-bottom{align-items:start;flex-direction:column}.hero p{font-size:14px}.round-link{margin-top:0;font-size:12px;gap:18px}.round-link span{width:35px;height:35px}.featured{grid-template-columns:1fr;gap:16px}.feature{min-height:410px;padding:28px}.feature h2{font-size:37px}.feature-copy{width:70%}.feature-visual{width:200px;top:90px;right:-30px}.feature-ura{min-height:420px}.feature-ura .app-icon{right:30px;top:65px}.feature-ura h2{font-size:34px}.word-art{margin-top:0;margin-bottom:8px}.apps-section{padding-block:56px 44px}.section-heading{align-items:start;flex-direction:column;gap:15px;margin-bottom:22px}h2{font-size:29px}.app-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.app-card{padding:18px}.card-head{flex-direction:column;gap:13px}.category{text-align:left;max-width:none;font-size:9px}.app-card h3{font-size:18px;margin-top:16px}.app-card p{font-size:12px}.store-links{gap:0 15px}.store-link{font-size:11px}.contact-section{align-items:start;flex-direction:column;padding-block:34px}.contact-section p br{display:none}.legal-section{padding-block:44px}.legal-shortcuts{flex-direction:column;gap:0}.legal-body{font-size:14px}.site-footer{flex-wrap:wrap;font-size:10px;gap:15px}.site-footer span:nth-child(2){margin-left:0}.site-footer a{margin-left:auto}.document{font-size:15px}.document h1{font-size:29px}}
 @media(max-width:380px){.app-grid{grid-template-columns:1fr}.card-head{flex-direction:row}.feature-copy{width:85%}.feature-visual{opacity:.2;right:-60px}.feature-label{font-size:8px}.feature-ura .app-icon{width:48px;height:48px;right:20px}.word-art span+span{font-size:21px}.hero h1{font-size:49px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}@media print{.site-header,.hero,.featured,.apps-section,.contact-section,.site-footer,.legal-shortcuts,.back-link{display:none}.shell{width:100%}.legal-body{max-width:none}.legal-section{padding:0}.legal-body a{color:inherit}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}@media print{.reveal{opacity:1!important;translate:none!important}.ripple{display:none}.site-header,.hero,.featured,.apps-section,.contact-section,.site-footer,.legal-shortcuts,.back-link{display:none}.shell{width:100%}.legal-body{max-width:none}.legal-section{padding:0}.legal-body a{color:inherit}}
 @media(max-width:700px){.feature-copy{width:85%}.feature-shapey h2{font-size:32px}.feature-visual{width:145px;right:-55px;top:130px}.feature-shapey p{max-width:200px}}
+
+/* Motion: hover, click and scroll effects (motion.js adds ripples, reveals and the Shapey tilt) */
+:root{--ease-out:cubic-bezier(.22,1,.36,1);--ease-spring:cubic-bezier(.34,1.56,.64,1)}
+@keyframes rise{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 #718a4966}50%{box-shadow:0 0 0 6px #718a4900}}
+@keyframes ripple{from{transform:scale(0);opacity:.35}to{transform:scale(1);opacity:0}}
+@keyframes pop{0%{scale:1}35%{scale:.9}70%{scale:1.08}100%{scale:1}}
+@keyframes wiggle{0%,100%{rotate:0deg}30%{rotate:-4deg}60%{rotate:3deg}}
+@keyframes hop{0%,100%{translate:0 0}40%{translate:0 -7px}70%{translate:0 1px}}
+@keyframes unfold{from{opacity:0;translate:0 -8px}to{opacity:1;translate:0 0}}
+.hero .eyebrow,.hero h1,.hero-bottom{animation:rise .9s var(--ease-out) both}.hero h1{animation-delay:.1s}.hero-bottom{animation-delay:.22s}
+.status-dot{animation:pulse-dot 2.4s ease-in-out infinite}
+.js .reveal{opacity:0;translate:0 26px;transition:opacity .75s var(--ease-out) var(--reveal-delay,0ms),translate .85s var(--ease-out) var(--reveal-delay,0ms),transform .35s var(--ease-out),box-shadow .35s var(--ease-out),border-color .35s,background-color .35s}
+.js .reveal.is-visible{opacity:1;translate:0 0}
+.ripple{position:absolute;border-radius:50%;background:currentColor;pointer-events:none;animation:ripple .65s var(--ease-out) forwards}
+.button,.app-card,.feature,summary,.round-link span{position:relative;overflow:hidden}
+.brand-mark span{display:inline-block}.brand:hover .brand-mark span{animation:hop .6s var(--ease-spring)}
+.site-header nav a{text-decoration:none;background:linear-gradient(currentColor,currentColor) left 85%/0 1.5px no-repeat;transition:background-size .35s var(--ease-out),color .2s}.site-header nav a:hover{text-decoration:none;background-size:100% 1.5px;color:#4f6b2b}
+.button{transition:transform .3s var(--ease-spring),box-shadow .3s var(--ease-out),background-color .25s}.button span{transition:transform .3s var(--ease-spring)}
+.button:hover{transform:translateY(-3px);box-shadow:0 12px 26px #183d3526}.button:hover span{transform:translate(3px,-3px)}.button:active{transform:translateY(0) scale(.96);box-shadow:0 4px 10px #183d3520;transition-duration:.08s}
+.button-light:hover{background:#e6f4cf}.button-dark:hover{background:#245448}
+.round-link span{transition:transform .35s var(--ease-spring),background-color .25s}.round-link:hover span{transform:translateY(4px);background:#c9e2a3}.round-link:active span{transform:scale(.9)}
+.feature{transition:transform .45s var(--ease-out),box-shadow .45s var(--ease-out)}.feature:hover{transform:translateY(-5px);box-shadow:0 26px 50px #183d3522}.feature:active{transform:translateY(-2px) scale(.99)}
+.feature-visual{transition:transform .6s var(--ease-out),box-shadow .6s var(--ease-out)}.feature-shapey:hover .feature-visual{transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) rotate(4deg) translateY(-10px) scale(1.03);box-shadow:0 34px 70px #0006}
+.feature .app-icon{transition:transform .45s var(--ease-spring)}.feature:hover .app-icon{transform:rotate(-8deg) scale(1.08)}
+.feature-ura:hover .word-art span{animation:wiggle .7s var(--ease-out)}.feature-ura:hover .word-art span+span{animation-delay:.12s}
+.word-art span{transition:background-color .3s}.feature-ura:hover .word-art span{background:#fff}.feature-ura:hover .word-art span+span{background:#c6dba5}
+.app-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px #183d3514;border-color:#c9d8b4}.app-card:active{transform:translateY(-2px) scale(.985);transition-duration:.1s}
+.app-card .app-icon{transition:transform .45s var(--ease-spring),box-shadow .45s}.app-card:hover .app-icon{transform:rotate(-6deg) scale(1.1);box-shadow:0 10px 22px #173a3524}
+.app-card h3{transition:color .25s}.app-card:hover h3{color:#4f6b2b}
+.app-icon.is-popped,.feature-visual.is-popped{animation:pop .45s var(--ease-spring)}
+.store-link,.privacy-link,.legal-shortcuts a,.text-link{transition:color .2s}.store-link span,.privacy-link span{display:inline-block;transition:transform .3s var(--ease-spring)}
+.store-link:hover,.privacy-link:hover{color:#4f6b2b}.store-link:hover span,.privacy-link:hover span{transform:translate(3px,-3px)}
+.store-link:active,.privacy-link:active,.legal-shortcuts a:active,.text-link:active{opacity:.6}
+summary{transition:padding .3s var(--ease-out),color .2s}summary:hover{padding-left:10px;color:#4f6b2b}summary span{transition:transform .4s var(--ease-spring)}summary:hover span{transform:scale(1.2)}details[open]>summary span{transform:rotate(45deg)}details[open]>summary:hover span{transform:rotate(45deg) scale(1.2)}
+details[open]>.legal-body{animation:unfold .45s var(--ease-out)}
+@media(hover:none){.app-card:hover,.feature:hover{transform:none;box-shadow:none}.app-card:hover .app-icon,.feature:hover .app-icon{transform:none}summary:hover{padding-left:0}}
